@@ -1,2 +1,4 @@
 export const baseurl = () =>
-  import.meta.env.PROD ? "https://whyneet.vercel.app" : "http://localhost:4321";
+  import.meta.env.BASE_URL === "/"
+    ? "http://localhost:4321"
+    : "https://whyneet.vercel.app";

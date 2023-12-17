@@ -16,7 +16,7 @@ export default defineConfig({
       }
     }
   },
-  output: "hybrid",
+  output: "server",
   prefetch: {
     defaultStrategy: "hover"
   },
