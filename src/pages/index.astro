@@ -4,12 +4,6 @@ import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/sections/hero/Hero.astro";
 import Skills from "@/components/sections/skills/Skills.astro";
 import Projects from "@/components/sections/projects/Projects.astro";
-
-import type { Repo } from "@/types";
-import { baseurl } from "@/lib/baseUrl";
-
-const data = await fetch(`${baseurl()}/api/repos.json`);
-const repos: { repos: Repo[] } = await data.json();
 ---
 
 <Layout title="This Website">
@@ -18,5 +12,5 @@ const repos: { repos: Repo[] } = await data.json();
   <div class="h-[300vh]">
     <Skills />
   </div>
-  <Projects repos={repos.repos} />
+  <Projects />
 </Layout>
