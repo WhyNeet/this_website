@@ -1,0 +1,19 @@
+---
+import ProgrammingLanguageCard from "./ProgrammingLanguageCard.astro";
+import SkillCard from "./SkillCard.astro";
+---
+
+<SkillCard className="col-span-2">
+  <h2 class="font-bold text-xl mb-6">Programming languages</h2>
+  <div class="flex flex-col items-stretch gap-4">
+    <ProgrammingLanguageCard
+      title="TypeScript"
+      description="Statically typed JavaScript."
+    />
+    <ProgrammingLanguageCard
+      logoExt="svg"
+      title="Rust"
+      description="A performant, type-safe, concurrent language."
+    />
+  </div>
+</SkillCard>

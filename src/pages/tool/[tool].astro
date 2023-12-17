@@ -1,0 +1,23 @@
+---
+import type { GetStaticPaths } from "astro";
+export const getStaticPaths = (() => {
+  return [
+    { params: { tool: "Docker" } },
+    { params: { tool: "Kubernetes" } },
+    { params: { tool: "Git" } },
+    { params: { tool: "GitHub" } },
+    { params: { tool: "Vite" } },
+    { params: { tool: "Webpack" } },
+    { params: { tool: "npm" } },
+    { params: { tool: "cargo" } },
+  ];
+}) satisfies GetStaticPaths;
+
+import Layout from "@/layouts/Layout.astro";
+
+const { tool } = Astro.params;
+---
+
+<Layout title=`This Website | ${tool}`>
+  <div>u r viewing {tool}</div>
+</Layout>

@@ -1,0 +1,42 @@
+---
+import SkillCard from "./SkillCard.astro";
+---
+
+<SkillCard className="col-span-2">
+  <h2 class="font-bold text-xl mb-6">Other</h2>
+  <div class="flex flex-col items-stretch gap-2">
+    <div
+      class="flex items-center px-4 py-3 rounded-xl border border-secondary-background bg-black/40 gap-2 flex-wrap"
+    >
+      <div class="font-bold">Databases</div>
+      <span class="flex-1"></span>
+      <div class="flex gap-2">
+        {
+          ["MongoDB", "Postgres", "Redis"].map((db) => (
+            <a
+              href={`/db/${db}`}
+              class="rounded-full bg-secondary-background px-4 py-1 text-sm hover:bg-primary transition-colors"
+            >
+              {db}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <div class="flex flex-col items-stretch gap-2">
+      <div
+        class="flex items-center px-4 py-3 rounded-xl border border-secondary-background bg-black/40 gap-2"
+      >
+        <div class="font-bold">Code editor</div>
+        <span class="flex-1"></span>
+        {
+          ["VSCode"].map((db) => (
+            <div class="rounded-full bg-secondary-background px-4 py-1 text-sm">
+              {db}
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</SkillCard>

@@ -1,0 +1,64 @@
+---
+import HeroTitle from "./HeroTitle.astro";
+import ProfileLink from "./ProfileLink.astro";
+---
+
+<section
+  class="h-screen w-screen flex justify-center flex-col px-16 absolute inset-0 hero-section overflow-hidden z-10 will-change-transform"
+>
+  <ProfileLink />
+  <HeroTitle />
+  <h2
+    class="md:text-4xl text-2xl font-bold bg-gradient-to-b from-text to-primary/50 bg-clip-text text-transparent mb-24"
+  >
+    Building web experiences, one pixel at a time
+  </h2>
+  <div
+    class="hero-scale absolute -z-10 pointer-events-none overflow-hidden will-change-transform"
+  >
+    <div
+      class="absolute inset-0 flex justify-end items-center flex-col p-16 pointer-events-none z-10 hero-hint will-change-transform"
+    >
+      <div class="text-xl text-text/80 font-bold whitespace-nowrap">
+        Dive in!
+      </div>
+      <p class="text-text/60 mb-4 whitespace-nowrap">
+        or just scroll, I won't judge
+      </p>
+      <span class="icon text-text/60">keyboard_arrow_down</span>
+    </div>
+    <div class="hero-gradient z-20 absolute inset-0"></div>
+    <div class="absolute -z-10 inset-0 hero-bg"></div>
+  </div>
+</section>
+
+<style>
+  .hero-gradient {
+    background-image: radial-gradient(
+      90% 100% at 50% 2%,
+      #00000000 0%,
+      #4427621c 75%,
+      #9c59de 115%,
+      #dab6ff 120%
+    );
+
+    animation: reveal 2000ms ease-in-out;
+  }
+
+  .hero-bg {
+    background-color: #000;
+    background-image: linear-gradient(to right, #1a1a1a 1px, transparent 1px),
+      linear-gradient(to bottom, #1a1a1a 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center calc(var(--scroll, 0) * -0.2px);
+  }
+
+  .hero-scale {
+    inset: calc(var(--scroll, 0) * 0.09px);
+    border-radius: calc(var(--scroll, 0) * 0.05px);
+  }
+
+  .hero-hint {
+    transform: translateY(calc(var(--scroll, 0) * 0.2px));
+  }
+</style>

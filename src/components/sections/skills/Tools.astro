@@ -1,0 +1,59 @@
+---
+import SkillCard from "./SkillCard.astro";
+const tools: Record<
+  string,
+  { name: string; logoExt?: "png" | "svg"; noLink?: boolean }[]
+> = {
+  Containerization: [
+    { name: "Docker", logoExt: "svg" },
+    { name: "Kubernetes" },
+  ],
+  "Version control": [
+    { name: "Git", logoExt: "svg", noLink: true },
+    { name: "GitHub", logoExt: "svg", noLink: true },
+  ],
+  Bundlers: [
+    { name: "Vite", logoExt: "svg" },
+    { name: "Webpack", logoExt: "svg" },
+  ],
+  "Package managers": [{ name: "npm", logoExt: "svg" }, { name: "cargo" }],
+  Design: [{ name: "Figma", logoExt: "svg", noLink: true }],
+  Testing: [{ name: "Vitest", logoExt: "svg", noLink: true }],
+};
+---
+
+<SkillCard className="col-span-3 row-span-2">
+  <h2 class="font-bold text-lg mb-6">Tools</h2>
+  <div class="w-full grid grid-cols-2 gap-y-8 gap-x-4">
+    {
+      Object.entries(tools).map(([category, tools]) => (
+        <div>
+          <div class="text-secondary text-sm mb-2">{category}</div>
+          <div class="flex gap-2 flex-col items-stretch">
+            {tools.map((tool) => (
+              <a
+                href={tool.noLink ? undefined : `/tool/${tool.name}`}
+                class={`rounded-xl p-4 border border-secondary-background bg-black/50 ${
+                  tool.noLink ? null : "hover:bg-secondary-background/50"
+                } flex items-center group relative transition-colors`}
+              >
+                <div class="h-7 w-7 flex items-center justify-center mr-4">
+                  <img
+                    src={`/logos/${tool.name}.${tool.logoExt ?? "png"}`}
+                    class="h-7"
+                  />
+                </div>
+                {tool.name}
+                {tool.noLink ? null : (
+                  <span class="icon absolute right-4 group-hover:opacity-100 opacity-0 transition-all scale-50 group-hover:scale-100 p-2 backdrop-blur rounded-full border border-secondary-background/80 text-secondary">
+                    chevron_right
+                  </span>
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</SkillCard>

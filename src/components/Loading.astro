@@ -1,0 +1,45 @@
+<div
+  class="fixed top-0 inset-x-0 overflow-hidden h-2 before:absolute before:h-full before:bg-primary after:h-full after:absolute after:bg-primary opacity-0 scale-y-0 progress transition-all"
+>
+</div>
+
+<style>
+  body.loading {
+    overflow-y: hidden;
+  }
+
+  body.loading > .progress {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  .progress::before {
+    animation: indeterminate_first 1.5s infinite ease-out;
+  }
+
+  .progress::after {
+    animation: indeterminate_second 1.5s infinite ease-in;
+  }
+
+  @keyframes indeterminate_first {
+    0% {
+      left: -100%;
+      width: 100%;
+    }
+    100% {
+      left: 110%;
+      width: 10%;
+    }
+  }
+
+  @keyframes indeterminate_second {
+    0% {
+      left: -150%;
+      width: 100%;
+    }
+    100% {
+      left: 110%;
+      width: 10%;
+    }
+  }
+</style>

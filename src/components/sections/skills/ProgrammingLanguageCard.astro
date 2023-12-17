@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  logoExt?: string;
+}
+
+const { description, title, logoExt } = Astro.props;
+---
+
+<a
+  href=`/lang/${title}`
+  class="w-full p-4 rounded-xl border-2 border-secondary-background hover:-translate-y-1 hover:shadow-purple-500/20 hover:border-primary shadow-xl transition-all group relative flex items-center will-change-transform"
+>
+  <img
+    src=`/logos/${title}.${logoExt ?? 'png'}`
+    class="h-10 w-10 mr-4"
+    alt=`${title} logo`
+  />
+  <div>
+    <div class="font-bold">
+      {title}
+    </div>
+    <p class="text-sm text-secondary">
+      {description}
+    </p>
+  </div>
+  <span
+    class="icon absolute right-6 group-hover:opacity-100 opacity-0 transition-all scale-50 group-hover:scale-100 p-2 backdrop-blur rounded-full border border-secondary-background/80 text-secondary"
+    >chevron_right</span
+  >
+</a>

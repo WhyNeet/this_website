@@ -1,0 +1,81 @@
+---
+import SectionHeading from "@/components/SectionHeading.astro";
+import Other from "./Other.astro";
+import ProgrammingLanguages from "./ProgrammingLanguages.astro";
+import Tools from "./Tools.astro";
+---
+
+<section class="sticky top-0 inset-x-0 py-32 px-12">
+  <SectionHeading
+    title="Can I compete?"
+    description="My cat can code better."
+  />
+  <div class="grid grid-cols-5 grid-rows-2 gap-4 cards">
+    <ProgrammingLanguages />
+    <Tools />
+    <Other />
+  </div>
+</section>
+
+<script>
+  let cards = document.querySelectorAll(
+    ".skill-card"
+  ) as unknown as HTMLElement[];
+
+  const updateCards = () => {
+    for (const [idx, card] of cards.entries()) {
+      card.style.setProperty(
+        "--reveal",
+        Math.min(
+          Math.max(
+            /*
+              percentage = (scroll - start) / end
+              start = 100vh / startOffset
+              end = 100vh / endOffset
+
+              startOffset is part of the page when cards start appearing
+              endOffset is part of the page when cards stop appearing (1 + (5 / window.innerHeight) * 100)
+
+              in this context, cards start to appear at half of the Hero section and stop at the Skills section
+
+              multiply idx by (numOfCards - 1) / spaceProvided
+              spaceProvided = 100vh
+            */
+
+            Math.max(window.scrollY - window.innerHeight / 2, 0) /
+              (window.innerHeight /
+                (Math.ceil(
+                  (1 + ((cards.length - 1) / window.innerHeight) * 100) * 10
+                ) /
+                  10)),
+            0
+          ) -
+            idx * (((cards.length - 1) / window.innerHeight) * 100),
+          1
+        ).toString()
+      );
+    }
+  };
+
+  document.addEventListener("mousemove", (e) => {
+    cards.forEach((card) => {
+      if (!card.matches(":hover")) return;
+
+      const { x, y } = card.getBoundingClientRect();
+
+      const cursorX = e.clientX - x;
+      const cursorY = e.clientY - y;
+
+      card.style.setProperty("--cursor-x", cursorX + "px");
+      card.style.setProperty("--cursor-y", cursorY + "px");
+    });
+  });
+
+  document.addEventListener("astro:page-load", () => {
+    cards = document.querySelectorAll(
+      ".skill-card"
+    ) as unknown as HTMLElement[];
+    updateCards();
+  });
+  window.addEventListener("scroll", updateCards);
+</script>

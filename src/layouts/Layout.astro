@@ -1,0 +1,79 @@
+---
+import { ViewTransitions } from "astro:transitions";
+
+import "@fontsource-variable/space-grotesk";
+import Loading from "@/components/Loading.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <ViewTransitions />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen w-screen text-text bg-background antialiased">
+    <Loading />
+    <slot />
+    <style is:global>
+      :root {
+        --text: 0 0% 100%;
+        --background: 0 0% 0%;
+        --primary: 270 67% 61%;
+        --secondary: 0 0% 71%;
+        --secondary-background: 0 0% 11%;
+        --tertiary: 0 0% 39%;
+      }
+
+      body::-webkit-scrollbar {
+        display: none;
+      }
+
+      @font-face {
+        font-family: "Material Symbols Outlined";
+        font-style: normal;
+        font-weight: 400;
+        src: url(/material-symbols.woff2) format("woff2");
+      }
+
+      .icon {
+        font-family: "Material Symbols Outlined";
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-block;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        -webkit-font-feature-settings: "liga";
+        -webkit-font-smoothing: antialiased;
+      }
+
+      @keyframes reveal {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+
+    <script src="@/lib/ui/scroll.ts"></script>
+    <script src="@/lib/ui/loading.ts"></script>
+  </body>
+</html>

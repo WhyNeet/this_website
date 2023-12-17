@@ -1,0 +1,19 @@
+---
+import SectionHeading from "@/components/SectionHeading.astro";
+import type { Repo } from "@/types";
+import ProjectsList from "./ProjectsList";
+
+interface Props {
+  repos: Repo[];
+}
+
+const { repos } = Astro.props;
+---
+
+<section class="pb-32 px-12">
+  <SectionHeading
+    title="My projects"
+    description="My Code Zoo: Where (mostly) functional projects roam free."
+  />
+  <ProjectsList repos={repos} />
+</section>

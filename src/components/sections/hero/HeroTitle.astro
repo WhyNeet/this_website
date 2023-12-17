@@ -1,0 +1,29 @@
+<h1
+  class="md:text-7xl text-5xl font-bold bg-gradient-to-b from-text to-text/60 pb-1 bg-clip-text text-transparent mb-6"
+  id="hero-title"
+>
+  Byte-Sized Dreams
+</h1>
+
+<script>
+  const randoms =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=-\\/?~";
+  const title = document.getElementById("hero-title")!;
+  const text = title.innerText.split("");
+
+  const randomize = () =>
+    randoms.charAt(Math.floor(Math.random() * randoms.length));
+
+  let iteration = 0;
+  const slowdown = 3;
+
+  const interval = setInterval(() => {
+    if (iteration >= text.length) clearInterval(interval);
+
+    title.innerText = text
+      .map((char, idx) => (idx < iteration ? char : randomize()))
+      .join("");
+
+    iteration += 1 / slowdown;
+  }, 30);
+</script>

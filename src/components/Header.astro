@@ -1,0 +1,28 @@
+<header class="fixed top-0 inset-x-0 py-10 px-12 z-50">
+  <a
+    href="/"
+    class="font-black text-xl bg-gradient-to-b from-text to-text/60 bg-clip-text text-transparent"
+    >This Website</a
+  >
+</header>
+
+<style>
+  header::after {
+    content: "";
+    backdrop-filter: blur(10px);
+    -webkit-mask: linear-gradient(0deg, transparent, black 100%);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+
+  header {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.3) 40%,
+      rgba(0, 0, 0, 0.1) 70%,
+      transparent 100%
+    );
+  }
+</style>
