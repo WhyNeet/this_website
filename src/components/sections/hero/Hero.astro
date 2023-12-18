@@ -4,7 +4,7 @@ import ProfileLink from "./ProfileLink.astro";
 ---
 
 <section
-  class="h-screen w-screen flex justify-center flex-col px-16 absolute inset-0 hero-section overflow-hidden z-10 will-change-transform"
+  class="h-screen w-screen flex justify-center flex-col px-12 md:px-14 lg:px-16 absolute inset-0 hero-section overflow-hidden z-10 will-change-transform"
 >
   <ProfileLink />
   <HeroTitle />
@@ -19,13 +19,13 @@ import ProfileLink from "./ProfileLink.astro";
     <div
       class="absolute inset-0 flex justify-end items-center flex-col p-16 pointer-events-none z-10 hero-hint will-change-transform"
     >
-      <div class="text-xl text-text/80 font-bold whitespace-nowrap">
+      <div class="text-lg md:text-xl text-text/80 font-bold whitespace-nowrap">
         Dive in!
       </div>
-      <p class="text-text/60 mb-4 whitespace-nowrap">
+      <p class="text-sm md:text-base text-text/60 mb-4 whitespace-nowrap">
         or just scroll, I won't judge
       </p>
-      <span class="icon text-text/60">keyboard_arrow_down</span>
+      <span class="icon text-text/60 text-2xl">keyboard_arrow_down</span>
     </div>
     <div class="hero-gradient z-20 absolute inset-0"></div>
     <div class="absolute -z-10 inset-0 hero-bg"></div>

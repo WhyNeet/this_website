@@ -1,15 +1,17 @@
 ---
 interface Props {
   className?: string;
+  idx?: number;
 }
 
-const { className } = Astro.props;
+const { className, idx } = Astro.props;
 ---
 
 <div
-  class={`rounded-xl relative bg-secondary-background/70 skill-card after:h-32 after:w-32 after:rounded-full after:bg-primary/40 after:opacity-0 after:absolute after:top-[calc(var(--cursor-y,0px)-64px)] after:left-[calc(var(--cursor-x,0px)-64px)] after:pointer-events-none hover:after:opacity-100 after:blur-3xl overflow-hidden after:transition-opacity after:duration-300 after:-z-10 ${className}`}
+  data-idx={idx}
+  class={`rounded-xl relative bg-secondary-background/70 skill-card before:-top-16 before:-left-16 before:absolute before:h-32 before:w-32 before:bg-primary/10 before:blur-3xl before:opacity-100 hover:before:opacity-0 before:transition-opacity before:duration-300 after:h-32 after:w-32 after:rounded-full after:bg-primary/40 after:opacity-0 after:absolute after:top-[calc(var(--cursor-y,0px)-64px)] after:left-[calc(var(--cursor-x,0px)-64px)] after:pointer-events-none hover:after:opacity-100 after:blur-3xl overflow-hidden after:transition-opacity after:duration-300 after:-z-10 ${className}`}
 >
-  <div class="m-[2px] rounded-xl bg-black/40 p-8 h-[calc(100%-4px)]">
+  <div class="m-[2px] rounded-xl bg-black/40 p-6 md:p-8 h-[calc(100%-4px)]">
     <slot />
   </div>
 </div>

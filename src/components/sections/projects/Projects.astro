@@ -1,18 +1,25 @@
 ---
-import SectionHeading from "@/components/SectionHeading.astro";
-import ProjectsList from "./ProjectsList";
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import { ProjectsList } from "./ProjectsList/index";
 
-import type { Repo } from "@/types";
-import { baseurl } from "@/lib/baseUrl";
+import type { ApiTopics, Repo } from "@/types";
+import { baseurl } from "@/lib/utils/baseurl";
+import Section from "@/components/ui/Section.astro";
 
 const data = await fetch(`${baseurl()}/api/repos.json`);
-const repos: { repos: Repo[] } = await data.json();
+const repos: { repos: (Repo & ApiTopics)[] } = await data.json();
 ---
 
-<section class="pb-32 px-12">
+<Section class="pb-16">
   <SectionHeading
     title="My projects"
     description="My Code Zoo: Where (mostly) functional projects roam free."
   />
-  <ProjectsList repos={repos.repos} />
-</section>
+  <ProjectsList
+    repos={repos.repos.map((repo) => ({
+      ...repo,
+      topics: repo.repositoryTopics.nodes.map(({ topic: { name } }) => name),
+    }))}
+    client:idle
+  />
+</Section>

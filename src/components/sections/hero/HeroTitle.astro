@@ -9,6 +9,8 @@
   const randoms =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+=-\\/?~";
   const title = document.getElementById("hero-title")!;
+  const { height } = title.getBoundingClientRect();
+  title.style.height = height + "px";
   const text = title.innerText.split("");
 
   const randomize = () =>
@@ -18,7 +20,10 @@
   const slowdown = 3;
 
   const interval = setInterval(() => {
-    if (iteration >= text.length) clearInterval(interval);
+    if (iteration >= text.length) {
+      title.style.height = "";
+      clearInterval(interval);
+    }
 
     title.innerText = text
       .map((char, idx) => (idx < iteration ? char : randomize()))

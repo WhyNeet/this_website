@@ -5,7 +5,9 @@ export type Repo = {
   description: string;
   homepageUrl: string;
   url: string;
-  repositoryTopics: { nodes: Topic[] };
 };
 
-export type Topic = { topic: { name: string } };
+export type ApiTopics = {
+  repositoryTopics: { nodes: { topic: { name: string } }[] };
+};
+export type Topics = { topics: string[] };
