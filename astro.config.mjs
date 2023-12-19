@@ -3,7 +3,7 @@ import { dirname, join as pathJoin } from "path";
 import { fileURLToPath } from "url";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
-import node from "@astrojs/node";
+// import node from "@astrojs/node";
 
 import solidJs from "@astrojs/solid-js";
 

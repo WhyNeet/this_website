@@ -1,13 +1,10 @@
 ---
 import SectionHeading from "@/components/ui/SectionHeading.astro";
 import { ProjectsList } from "./ProjectsList/index";
-
-import type { ApiTopics, Repo } from "@/types";
-import { baseurl } from "@/lib/utils/baseurl";
 import Section from "@/components/ui/Section.astro";
+import { getRepos } from "@/lib/api/repos";
 
-const data = await fetch(`${baseurl()}/api/repos.json`);
-const repos: { repos: (Repo & ApiTopics)[] } = await data.json();
+const repos = await getRepos();
 ---
 
 <Section class="pb-16">
@@ -16,7 +13,7 @@ const repos: { repos: (Repo & ApiTopics)[] } = await data.json();
     description="My Code Zoo: Where (mostly) functional projects roam free."
   />
   <ProjectsList
-    repos={repos.repos.map((repo) => ({
+    repos={repos.map((repo) => ({
       ...repo,
       topics: repo.repositoryTopics.nodes.map(({ topic: { name } }) => name),
     }))}
