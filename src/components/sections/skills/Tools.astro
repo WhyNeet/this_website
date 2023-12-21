@@ -19,9 +19,9 @@ const tools: Record<string, { name: string; logoExt?: "png" | "svg" }[]> = {
 };
 ---
 
-<SkillCard idx={0} className="w-full h-full">
+<SkillCard idx={0} className="w-full">
   <h2 class="font-bold text-lg mb-6">Tools</h2>
-  <div class="w-full grid md:grid-cols-2 gap-y-8 gap-x-4">
+  <div class="w-full grid md:grid-cols-2 2xl:grid-cols-3 gap-y-8 gap-x-4">
     {
       Object.entries(tools).map(([category, tools]) => (
         <div>

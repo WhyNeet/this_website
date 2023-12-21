@@ -6,7 +6,7 @@ import Tools from "./Tools.astro";
 import Section from "@/components/ui/Section.astro";
 ---
 
-<Section class="sticky top-0 inset-x-0">
+<Section id="skills-section" class="sticky top-0 inset-x-0">
   <SectionHeading
     title="Can I compete?"
     description="My cat can code better."
@@ -25,41 +25,36 @@ import Section from "@/components/ui/Section.astro";
     ".skill-card"
   ) as unknown as HTMLElement[];
 
-  const updateCards = () => {
+  let skills: HTMLElement = null!;
+  const setHeight = () => {
+    skills = document.getElementById("skills-section")!;
+    const skillsHeight = skills.getBoundingClientRect().height;
+
+    document
+      .getElementById("skills")!
+      .style.setProperty("--content-height", skillsHeight + "px");
+  };
+
+  window.addEventListener("resize", setHeight);
+
+  const setupCards = () => {
+    cards = document.querySelectorAll(
+      ".skill-card"
+    ) as unknown as HTMLElement[];
     for (const card of cards) {
       card.style.setProperty(
-        "--reveal",
-        Math.min(
-          Math.max(
-            /*
-              percentage = (scroll - start) / end
-              start = 100vh / startOffset
-              end = 100vh / endOffset
-
-              startOffset is part of the page when cards start appearing
-              endOffset is part of the page when cards stop appearing (1 + (5 / window.innerHeight) * 100)
-
-              in this context, cards start to appear at half of the Hero section and stop at the Skills section
-
-              multiply idx by (numOfCards - 1) / spaceProvided
-              spaceProvided = 100vh
-            */
-
-            Math.max(window.scrollY - window.innerHeight / 2, 0) /
-              (window.innerHeight /
-                (Math.ceil(
-                  (1 + ((cards.length - 1) / window.innerHeight) * 100) * 10
-                ) /
-                  10)),
-            0
-          ) -
-            +card.dataset["idx"]! *
-              (((cards.length - 1) / window.innerHeight) * 100),
-          1
-        ).toString()
+        "--offset",
+        (cards.length - +card.dataset["idx"]! - 1) * 0.2 + ""
       );
     }
   };
+  window.addEventListener("scroll", () => {
+    const scrollOffset = window.innerHeight / 2;
+    const scroll = window.scrollY - scrollOffset;
+    const percentage = scroll / (window.innerHeight * 2 - scrollOffset);
+
+    skills.style.setProperty("--reveal", percentage + "");
+  });
 
   document.addEventListener("mousemove", (e) => {
     cards.forEach((card) => {
@@ -76,10 +71,7 @@ import Section from "@/components/ui/Section.astro";
   });
 
   document.addEventListener("astro:page-load", () => {
-    cards = document.querySelectorAll(
-      ".skill-card"
-    ) as unknown as HTMLElement[];
-    updateCards();
+    setHeight();
+    setupCards();
   });
-  window.addEventListener("scroll", updateCards);
 </script>

@@ -9,8 +9,14 @@ import Projects from "@/components/sections/projects/Projects.astro";
 <Layout title="This Website">
   <Header />
   <Hero />
-  <div class="h-[360vh] sm:h-[340vh] md:h-[300vh] lg:h-[280vh] xl:h-[260vh]">
+  <div id="skills">
     <Skills />
   </div>
   <Projects />
 </Layout>
+
+<style>
+  #skills {
+    height: calc(var(--content-height, 0) + 200vh);
+  }
+</style>

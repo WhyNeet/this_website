@@ -19,8 +19,22 @@ const { className, idx } = Astro.props;
 <style>
   .skill-card {
     opacity: var(--reveal, 0);
-    transform: translateY(calc(40px - max(var(--reveal, 0)) * 40px))
-      scale(calc(0.95 + min(var(--reveal, 0) * 0.05, 0.05)));
-    transition: all 10ms ease-in-out;
+    transform: translateY(
+      max(calc(40px - (var(--reveal, 0) + var(--offset, 0)) * 40px), 0px)
+    );
+    scale: min(calc((var(--reveal, 0) + var(--offset, 0)) * 0.1 + 0.9), 1);
+
+    /*
+      0 -> 100
+      90 -> 100
+
+      value * 10 + 90
+    */
+  }
+
+  @media (max-width: 1280px) {
+    .skill-card {
+      --offset: 0 !important;
+    }
   }
 </style>

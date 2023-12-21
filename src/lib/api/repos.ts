@@ -40,7 +40,5 @@ query {
 
   cache.set("repos", repos);
 
-  console.log(repos);
-
   return repos;
 };
